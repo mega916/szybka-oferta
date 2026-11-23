@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generator ofert — Szybka Oferta</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="index.html">🧾 Szybka Oferta</a>
+  <nav class="bar-actions" aria-label="Akcje">
+    <button type="button" id="btnNew">Nowa oferta</button>
+    <button type="button" id="btnSaved">Zapisane</button>
+    <button type="button" id="btnCopy">Kopiuj jako tekst</button>
+    <button type="button" id="btnPro" class="ghost">Wersja demo</button>
+    <button type="button" id="btnPrint" class="primary">Drukuj / zapisz PDF</button>
+  </nav>
+</header>
+
+<main class="split">
+  <form id="form" class="form" autocomplete="off" onsubmit="return false">
+
+    <fieldset>
+      <legend>Oferta</legend>
+      <div class="grid g2">
+        <label>Numer oferty<input data-b="offer.number"></label>
+        <label>Data<input type="date" data-b="offer.date"></label>
+      </div>
+      <label>Tytuł / czego dotyczy<input data-b="offer.title" placeholder="np. Remont łazienki — etap I"></label>
+      <label>Oferta ważna (dni)<input inputmode="numeric" data-b="offer.validDays"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Klient</legend>
+      <label>Nazwa firmy lub imię i nazwisko<input data-b="offer.client.name"></label>
+      <div class="grid g2">
+        <label>NIP<input data-b="offer.client.nip"></label>
+        <label>Osoba do kontaktu<input data-b="offer.client.contact"></label>
+      </div>
+      <label>Adres<input data-b="offer.client.address"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Pozycje</legend>
+      <label>Branża — gotowe pozycje do kliknięcia<select id="industry"></select></label>
+      <div id="chips" class="chips" aria-label="Gotowe pozycje"></div>
+      <div id="rows" class="rows"></div>
+      <button type="button" id="addRow" class="add">Dodaj pozycję</button>
+      <datalist id="units"><option>godz.</option><option>szt.</option><option>kpl.</option><option>m</option><option>m²</option><option>m³</option><option>kg</option><option>km</option><option>usł.</option><option>mies.</option><option>doba</option></datalist>
+    </fieldset>
+
+    <fieldset>
+      <legend>Warunki</legend>
+      <label>Termin realizacji<input data-b="offer.delivery" placeholder="np. 10 dni roboczych od zamówienia"></label>
+      <label>Płatność<input data-b="offer.payment"></label>
+      <label>Gwarancja<input data-b="offer.warranty" placeholder="np. 12 miesięcy na wykonane prace"></label>
+      <label>Uwagi do oferty<textarea rows="3" data-b="offer.notes" placeholder="Zakres prac, co jest po stronie klienta, materiał własny klienta…"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Twoja firma <small>(zapamiętana w tej przeglądarce)</small></legend>
+      <label>Nazwa firmy<input data-b="seller.name"></label>
+      <div class="grid g2">
+        <label>NIP<input data-b="seller.nip"></label>
+        <label>Telefon<input data-b="seller.phone"></label>
+      </div>
+      <label>Adres<input data-b="seller.address"></label>
+      <div class="grid g2">
+        <label>E-mail<input type="email" data-b="seller.email"></label>
+        <label>Numer konta<input data-b="seller.bank"></label>
+      </div>
+      <label class="check"><input type="checkbox" data-b="seller.vatExempt"> Zwolniony z VAT (art. 113 ustawy o VAT) — ceny bez VAT</label>
+      <div class="logo-box">
+        <span>Logo na ofercie</span>
+        <input type="file" id="logoFile" accept="image/*">
+        <button type="button" id="logoClear" class="link">Usuń logo</button>
+        <small id="logoNote"></small>
+      </div>
+    </fieldset>
+  </form>
+
+  <section class="stage" aria-label="Podgląd oferty">
+    <article id="sheet" class="paper"></article>
+  </section>
+</main>
+
+<dialog id="dlgSaved">
+  <form method="dialog" class="dlg">
+    <h2>Zapisane oferty</h2>
+    <div id="savedList"></div>
+    <div class="dlg-actions">
+      <button type="button" id="btnSave" class="primary">Zapisz bieżącą ofertę</button>
+      <button type="button" id="btnExport">Pobierz kopię (Pro)</button>
+      <label class="filebtn">Wczytaj kopię (Pro)<input type="file" id="importFile" accept="application/json"></label>
+      <button value="close">Zamknij</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlgPro">
+  <form method="dialog" class="dlg">
+    <h2>🔒 Wersja Pro</h2>
+    <p id="proStatus"></p>
+    <ul class="plain">
+      <li>Oferta bez dopisku „wersja demo”</li>
+      <li>Logo firmy na ofercie</li>
+      <li>Bez limitu zapisanych ofert</li>
+      <li>Własna biblioteka pozycji i kopia zapasowa</li>
+    </ul>
+    <label>Kod Pro<input id="proCode" autocomplete="off" placeholder="SO-XXXXXXXXXX"></label>
+    <p id="proMsg" role="status"></p>
+    <div class="dlg-actions">
+      <button type="button" id="proApply" class="primary">Odblokuj</button>
+      <a id="proBuy" class="btnlink" href="#">Kup kod Pro</a>
+      <button value="close">Zamknij</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
