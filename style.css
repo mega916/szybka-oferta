@@ -72,6 +72,18 @@ main>section{padding-block:clamp(36px,6vw,72px);padding-inline:max(clamp(18px,5v
 .foot b{color:#fff;font-size:18px}
 .foot a{color:#fff}
 
+
+.example-tag{display:inline-block;margin:0 0 10px;padding:3px 10px;border-radius:999px;background:#FFF1C2;color:#6B4E00;font-weight:800;font-size:11.5px;letter-spacing:.04em}
+.dt-link{color:inherit;text-decoration:underline;text-decoration-color:var(--blue);text-underline-offset:3px}
+.about p{max-width:760px;color:var(--soft);font-size:18px;margin:0}
+.about a{color:#7DC0F2}
+.page-title{font-size:clamp(32px,5vw,54px);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0 0 8px;list-style:none}
+.chips li{background:#fff;color:var(--ink);border-radius:999px;padding:9px 16px;font-size:16px;font-weight:600}
+.chips small{color:var(--slate);font-weight:400}
+.legal{max-width:760px;padding-block:20px 60px}
+.legal h2{font-size:24px;margin:28px 0 8px}
+.legal p,.legal li{color:var(--soft);font-size:17px}
 @media (max-width:860px){
   .hero{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr}

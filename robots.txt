@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /generator.html
+Sitemap: https://mega916.github.io/szybka-oferta/sitemap.xml
